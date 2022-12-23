@@ -340,7 +340,7 @@ if mode == 'markdown'
   }
 
   # enforce max width
-  field_widths = field_widths.map{|w| w > 21 ? 21 : w}
+  field_widths = field_widths.map{|w| w > 25 ? 25 : w}
 
   # print the column headers
   puts field_widths.each_with_index.map{|w, idx|
@@ -348,11 +348,23 @@ if mode == 'markdown'
   }.join(' | ')
   
   # print beginning bar
-  puts field_widths.map{|w| '-' * (w+2)}.join('|')
+  puts field_widths.map{|w| '-' * (w+2)}.join('|')[1..-1]
 
   rows.each do |row|
-    puts field_widths.each_with_index.map { |len, idx|
-      row[idx].to_s.ljust(len, ' ')
+    column_deficit = 0
+    puts field_widths.each_with_index.map { |max_len, idx|
+      if row[idx].to_s.length > max_len
+        column_deficit += row[idx].to_s.length - max_len
+      end
+      # puts "column_deficit (#{row[idx].to_s}): #{column_deficit}" if column_deficit > 0
+      
+      adj_len = if (column_deficit > 0)
+        max_len - column_deficit
+      else
+        max_len
+      end
+      # puts "adj_len (#{row[idx].to_s}): #{adj_len}" if adj_len != max_len
+      row[idx].to_s.ljust(adj_len, ' ')
     }.join(' | ')
   end
   
