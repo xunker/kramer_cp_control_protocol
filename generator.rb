@@ -303,10 +303,11 @@ if mode == 'markdown'
 
   puts "\n---\n\n"
 
-  fields = ["Control Type", "Function", "Parameter (for Set)", "Function Group", "Function Description", "Response Values", "Comment"]
-  puts fields.join(' | ')
-  puts fields.map{|f| '-'*(f.length)}.join('|')
-  puts COMMANDS.map{|cmd|
+  field_names = ["Control Type", "Function", "Parameter (for Set)", "Function Group", "Function Description", "Response Values", "Comment"]
+
+  rows = []
+
+  COMMANDS.map{|cmd|
 
     control_type_f = if (single_control = [cmd.set_control, cmd.get_control].join).length < 2
       single_control
@@ -330,8 +331,31 @@ if mode == 'markdown'
       cmd.response_values.map{|k,v| "`#{k}`: #{v}"}.join(', ')
     end
 
-    [control_type_f, cmd.function_code, set_parameters, cmd.group, cmd.description, response_values, cmd.comments].join(' | ')
-  }.join("\n")
+    rows << [control_type_f, cmd.function_code, set_parameters, cmd.group, cmd.description, response_values, cmd.comments]
+  }
+
+  # calc the max fields widths so we can make the RAW markdown table line up! Awesomely unimportant!
+  field_widths = field_names.each_with_index.map{|field, idx|
+    ([field_names] + rows).map{|r| r[idx].to_s.length}.max
+  }
+
+  # enforce max width
+  field_widths = field_widths.map{|w| w > 21 ? 21 : w}
+
+  # print the column headers
+  puts field_widths.each_with_index.map{|w, idx|
+    field_names[idx].ljust(w, ' ')
+  }.join(' | ')
+  
+  # print beginning bar
+  puts field_widths.map{|w| '-' * (w+2)}.join('|')
+
+  rows.each do |row|
+    puts field_widths.each_with_index.map { |len, idx|
+      row[idx].to_s.ljust(len, ' ')
+    }.join(' | ')
+  end
+  
 else
   # assume json
   puts COMMANDS.to_json
