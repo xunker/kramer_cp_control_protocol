@@ -223,13 +223,13 @@ COMMANDS = [
   [:set_b, 6, [:integer, 0, 2], 'Color Format', 'Video Setting', { 0 => 'Default', 1 => 'RGB', 2 => 'YUV' }],
 
   [:set_b, 7, [:integer, 0, 6], 'Video Standard', 'Video Setting', {
-    0 => 'Video Standard - Auto',
-    1 => 'Video Standard - NTSC',
-    2 => 'Video Standard - NTSC 4.43',
-    3 => 'Video Standard - PAL',
-    4 => 'Video Standard - PAL-N',
-    5 => 'Video Standard - PAL-M',
-    6 => 'Video Standard - SECAM'
+    0 => 'Auto',
+    1 => 'NTSC',
+    2 => 'NTSC 4.43',
+    3 => 'PAL',
+    4 => 'PAL-N',
+    5 => 'PAL-M',
+    6 => 'SECAM'
   }],
   [:set_b, 8, [:integer, 0, 1], 'Film Mode', 'Video Setting', {0 => 'Off', 1 => 'On'}],
   [:set_b, 9, [:integer, 0, 1], 'Stereo', 'Audio Setting', {0 => 'Off', 1 => 'On'}],
@@ -277,12 +277,12 @@ COMMANDS = [
   [:set_b, 29, [:integer, 0, 2], 'Select Output Mode Userdefined Parameter Group', nil, { 0 => 'Group 1', 1 => 'Group 2', 2 => 'Group 3' }],
   [:set_b, 30, [:integer, 0, 2], 'Set the control way of Saving Audio Volume / Treble / Bass values', nil, { 1 => 'Individual', 0 => 'Master', 2 => 'Linked' }],
 
-  [:five, 0, :none, 'Load Gamma/Color - Normal'],
-  [:five, 1, :none, 'Load Gamma/Color - Presentation'],
-  [:five, 2, :none, 'Load Gamma/Color - Cinema'],
-  [:five, 3, :none, 'Load Gamma/Color - Nature'],
-  [:five, 4, :none, 'Load Gamma/Color - User1'],
-  [:five, 5, :none, 'Load Gamma/Color - User2'],
+  [:five, 0, :none, 'Normal', 'Load Gamma/Color'],
+  [:five, 1, :none, 'Presentation', 'Load Gamma/Color'],
+  [:five, 2, :none, 'Cinema', 'Load Gamma/Color'],
+  [:five, 3, :none, 'Nature', 'Load Gamma/Color'],
+  [:five, 4, :none, 'User1', 'Load Gamma/Color'],
+  [:five, 5, :none, 'User2', 'Load Gamma/Color'],
 
   [:set_c, 0, [:integer, 0, 1], 'Power', nil, {0 => 'Power Down', 1 => 'Power On'}],
   [:set_c, 1, [:integer, 0, 1], 'Freeze', nil, {0 => 'Off', 1 => 'On'}],
@@ -294,9 +294,15 @@ COMMANDS = [
 ].map{|command_def| VpCommand.new(*command_def)}
 
 if mode == 'markdown'
-  # Markdown generation
-  puts "# VP-719 Command Reference"
-  puts "As a sanity check against [the original](https://cdn.kramerav.com/web/downloads/protocols/vp-719xl_720xl_vp-724xl_protocol.pdf)"
+  # Markdown generation BY HAND PEOPLE!  HOW UGLY CAN I BE!?!?!
+  puts [
+    '# VP-719 Command Reference',
+    'As a sanity check against [the original](https://cdn.kramerav.com/web/downloads/protocols/vp-719xl_720xl_vp-724xl_protocol.pdf)',
+    'More details at https://github.com/xunker/kramer_cp_control_protocol/'
+  ].join("\n\n")
+
+  puts "\n---\n\n"
+
   fields = ["Control Type", "Function", "Parameter (for Set)", "Function Group", "Function Description", "Response Values", "Comment"]
   puts fields.join(' | ')
   puts fields.map{|f| '-'*(f.length)}.join('|')
@@ -321,7 +327,7 @@ if mode == 'markdown'
     end
 
     response_values = if cmd.response_values&.length.to_i > 0
-      cmd.response_values.map{|k,v| "#{k}: #{v}"}.join(', ')
+      cmd.response_values.map{|k,v| "`#{k}`: #{v}"}.join(', ')
     end
 
     [control_type_f, cmd.function_code, set_parameters, cmd.group, cmd.description, response_values, cmd.comments].join(' | ')
