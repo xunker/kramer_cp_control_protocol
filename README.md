@@ -1,6 +1,6 @@
 # Kramer VP-Series Control Protocol Definitions
 
-A collection of the RS-232 Serial (and serial-over-ethernet or serial-over-IR) protocol specs JSON format, so they can be easily used in any project.
+A collection of the RS-232 Serial (and serial-over-ethernet or serial-over-IR) protocol specs in JSON format, so they can be easily used in any project.
 
 ## Structure
 
