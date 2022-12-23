@@ -7,6 +7,7 @@
       },
       "description" : "Output",
       "function_code" : 0,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -18,6 +19,7 @@
       },
       "description" : "Freeze",
       "function_code" : 1,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -29,6 +31,7 @@
       },
       "description" : "Power",
       "function_code" : 2,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -40,6 +43,7 @@
       },
       "description" : "AV1",
       "function_code" : 3,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -51,6 +55,7 @@
       },
       "description" : "AV2",
       "function_code" : 4,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -62,6 +67,7 @@
       },
       "description" : "Comp",
       "function_code" : 5,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -73,6 +79,7 @@
       },
       "description" : "YC1",
       "function_code" : 6,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -84,6 +91,7 @@
       },
       "description" : "YC2",
       "function_code" : 7,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -95,6 +103,7 @@
       },
       "description" : "VGA1",
       "function_code" : 8,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -106,6 +115,7 @@
       },
       "description" : "VGA2",
       "function_code" : 9,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -117,6 +127,7 @@
       },
       "description" : "DVI",
       "function_code" : 10,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -128,6 +139,7 @@
       },
       "description" : "Information",
       "function_code" : 11,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -139,6 +151,7 @@
       },
       "description" : "Area Left Up",
       "function_code" : 12,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -150,6 +163,7 @@
       },
       "description" : "Area Middle Up",
       "function_code" : 13,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -161,6 +175,7 @@
       },
       "description" : "Area Right Up",
       "function_code" : 14,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -172,6 +187,7 @@
       },
       "description" : "Area Left Center",
       "function_code" : 15,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -183,6 +199,7 @@
       },
       "description" : "Area Middle Center",
       "function_code" : 16,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -194,6 +211,7 @@
       },
       "description" : "Area Right Center",
       "function_code" : 17,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -205,6 +223,7 @@
       },
       "description" : "Area Left Down",
       "function_code" : 18,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -216,6 +235,7 @@
       },
       "description" : "Area Middle Down",
       "function_code" : 19,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -227,6 +247,7 @@
       },
       "description" : "Area Right Dow",
       "function_code" : 20,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -238,6 +259,7 @@
       },
       "description" : "Auto Image",
       "function_code" : 21,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -249,6 +271,7 @@
       },
       "description" : "Menu",
       "function_code" : 22,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -260,6 +283,7 @@
       },
       "description" : "Up",
       "function_code" : 23,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -271,6 +295,7 @@
       },
       "description" : "Left",
       "function_code" : 24,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -282,6 +307,7 @@
       },
       "description" : "Enter",
       "function_code" : 25,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -293,6 +319,7 @@
       },
       "description" : "Right",
       "function_code" : 26,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -304,6 +331,7 @@
       },
       "description" : "Down",
       "function_code" : 27,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -315,6 +343,7 @@
       },
       "description" : "Auto Gain",
       "function_code" : 28,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -326,6 +355,7 @@
       },
       "description" : "PIP",
       "function_code" : 29,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -337,6 +367,7 @@
       },
       "description" : "Swap",
       "function_code" : 30,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -348,6 +379,7 @@
       },
       "description" : "Contrast",
       "function_code" : 31,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -359,6 +391,7 @@
       },
       "description" : "Brightness",
       "function_code" : 32,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -370,6 +403,7 @@
       },
       "description" : "Zoom In",
       "function_code" : 33,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -381,6 +415,7 @@
       },
       "description" : "Zoom Out",
       "function_code" : 34,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -392,6 +427,7 @@
       },
       "description" : "Volume Down",
       "function_code" : 35,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -403,6 +439,7 @@
       },
       "description" : "Mute",
       "function_code" : 36,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -414,6 +451,7 @@
       },
       "description" : "Volume Up",
       "function_code" : 37,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -425,6 +463,7 @@
       },
       "description" : "Color Mode",
       "function_code" : 38,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -436,6 +475,7 @@
       },
       "description" : "Aspect Ratio",
       "function_code" : 39,
+      "group" : "Remote Control Button",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -445,8 +485,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Gamma and Color: User1 Gamma",
+      "description" : "User1 Gamma",
       "function_code" : 0,
+      "group" : "Gamma and Color",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -460,8 +501,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Gamma and Color: User1 Color Temp Red",
+      "description" : "User1 Color Temp Red",
       "function_code" : 1,
+      "group" : "Gamma and Color",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -475,8 +517,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Gamma and Color: User1 Color Temp Green",
+      "description" : "User1 Color Temp Green",
       "function_code" : 2,
+      "group" : "Gamma and Color",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -490,8 +533,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Gamma and Color: User1 Color Temp Blue",
+      "description" : "User1 Color Temp Blue",
       "function_code" : 3,
+      "group" : "Gamma and Color",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -505,8 +549,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Gamma and Color: User1 Color Manager Red",
+      "description" : "User1 Color Manager Red",
       "function_code" : 4,
+      "group" : "Gamma and Color",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -520,8 +565,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Gamma and Color: User1 Color Manager Green",
+      "description" : "User1 Color Manager Green",
       "function_code" : 5,
+      "group" : "Gamma and Color",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -535,8 +581,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Gamma and Color: User1 Color Manager Blue",
+      "description" : "User1 Color Manager Blue",
       "function_code" : 6,
+      "group" : "Gamma and Color",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -550,8 +597,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Gamma and Color: User1 Color Manager Yellow",
+      "description" : "User1 Color Manager Yellow",
       "function_code" : 7,
+      "group" : "Gamma and Color",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -565,8 +613,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Gamma and Color: User2 Gamma",
+      "description" : "User2 Gamma",
       "function_code" : 8,
+      "group" : "Gamma and Color",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -580,8 +629,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Gamma and Color: User2 Color Temp Red",
+      "description" : "User2 Color Temp Red",
       "function_code" : 9,
+      "group" : "Gamma and Color",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -595,8 +645,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Gamma and Color: User2 Color Temp Green",
+      "description" : "User2 Color Temp Green",
       "function_code" : 10,
+      "group" : "Gamma and Color",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -610,8 +661,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Gamma and Color: User2 Color Temp Blue",
+      "description" : "User2 Color Temp Blue",
       "function_code" : 11,
+      "group" : "Gamma and Color",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -625,8 +677,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Gamma and Color: User2 Color Manager Red",
+      "description" : "User2 Color Manager Red",
       "function_code" : 12,
+      "group" : "Gamma and Color",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -640,8 +693,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Gamma and Color: User2 Color Manager Green",
+      "description" : "User2 Color Manager Green",
       "function_code" : 13,
+      "group" : "Gamma and Color",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -655,8 +709,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Gamma and Color: User2 Color Manager Blue",
+      "description" : "User2 Color Manager Blue",
       "function_code" : 14,
+      "group" : "Gamma and Color",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -670,8 +725,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Gamma and Color: User2 Color Manager Yellow",
+      "description" : "User2 Color Manager Yellow",
       "function_code" : 15,
+      "group" : "Gamma and Color",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -687,6 +743,7 @@
       },
       "description" : "Brightness",
       "function_code" : 16,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -702,6 +759,7 @@
       },
       "description" : "Contrast",
       "function_code" : 17,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -715,8 +773,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Aspect Ratio: User Define H-Zoom",
+      "description" : "User Define H-Zoom",
       "function_code" : 18,
+      "group" : "Aspect Ratio",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -730,8 +789,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Aspect Ratio: User Define V-Zoom",
+      "description" : "User Define V-Zoom",
       "function_code" : 19,
+      "group" : "Aspect Ratio",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -745,8 +805,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Aspect Ratio: User Define H-Pan",
+      "description" : "User Define H-Pan",
       "function_code" : 20,
+      "group" : "Aspect Ratio",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -760,8 +821,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Aspect Ratio: User Define V-Pan",
+      "description" : "User Define V-Pan",
       "function_code" : 21,
+      "group" : "Aspect Ratio",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -775,8 +837,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Graphics Setting: H-Position",
+      "description" : "H-Position",
       "function_code" : 22,
+      "group" : "Graphics Setting",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -790,8 +853,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Graphics Setting: V-Position",
+      "description" : "V-Position",
       "function_code" : 23,
+      "group" : "Graphics Setting",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -805,8 +869,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Graphics Setting: Color",
+      "description" : "Color",
       "function_code" : 24,
+      "group" : "Graphics Setting",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -820,8 +885,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Graphics Setting: Hue",
+      "description" : "Hue",
       "function_code" : 25,
+      "group" : "Graphics Setting",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -835,8 +901,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Graphics Setting: Sharpness",
+      "description" : "Sharpness",
       "function_code" : 26,
+      "group" : "Graphics Setting",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -850,8 +917,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Graphics Setting: Frequency",
+      "description" : "Frequency",
       "function_code" : 27,
+      "group" : "Graphics Setting",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -865,8 +933,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Graphics Setting: Phase",
+      "description" : "Phase",
       "function_code" : 28,
+      "group" : "Graphics Setting",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -880,8 +949,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Video Setting: Color",
+      "description" : "Color",
       "function_code" : 29,
+      "group" : "Video Setting",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -895,8 +965,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Video Setting: Hue",
+      "description" : "Hue",
       "function_code" : 30,
+      "group" : "Video Setting",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -910,8 +981,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Video Setting: Sharpness",
+      "description" : "Sharpness",
       "function_code" : 31,
+      "group" : "Video Setting",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -925,8 +997,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Video Setting: H-Position",
+      "description" : "H-Position",
       "function_code" : 32,
+      "group" : "Video Setting",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -942,6 +1015,7 @@
       },
       "description" : "Video V-Position for NTSC/NTSC 4.43/PAL-M/PAL 60",
       "function_code" : 33,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -957,6 +1031,7 @@
       },
       "description" : "Video V-Position for PAL/PAL-N/SECAM/NTSC 4.43 50",
       "function_code" : 33,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -970,8 +1045,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Audio Setting: Volume",
+      "description" : "Volume",
       "function_code" : 34,
+      "group" : "Audio Setting",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -985,8 +1061,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Audio Setting: Treble",
+      "description" : "Treble",
       "function_code" : 35,
+      "group" : "Audio Setting",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -1000,8 +1077,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "Audio Setting: Bass",
+      "description" : "Bass",
       "function_code" : 36,
+      "group" : "Audio Setting",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -1015,8 +1093,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "PIP Setting: H-Position",
+      "description" : "H-Position",
       "function_code" : 37,
+      "group" : "PIP Setting",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -1030,8 +1109,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "PIP Setting: V-Position",
+      "description" : "V-Position",
       "function_code" : 38,
+      "group" : "PIP Setting",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -1045,8 +1125,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "PIP Setting: User Define V-Size",
+      "description" : "User Define V-Size",
       "function_code" : 39,
+      "group" : "PIP Setting",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -1060,8 +1141,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "PIP Setting: User Define H-Size",
+      "description" : "User Define H-Size",
       "function_code" : 40,
+      "group" : "PIP Setting",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -1075,8 +1157,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "OSD Setting :H-Position",
+      "description" : "H-Position",
       "function_code" : 41,
+      "group" : "OSD Setting",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -1090,8 +1173,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "OSD Setting: V-Position",
+      "description" : "V-Position",
       "function_code" : 42,
+      "group" : "OSD Setting",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -1105,8 +1189,9 @@
          "get" : 2,
          "set" : 1
       },
-      "description" : "OSD Setting: OSD Time Out",
+      "description" : "OSD Time Out",
       "function_code" : 43,
+      "group" : "OSD Setting",
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -1122,6 +1207,7 @@
       },
       "description" : "HT, H-Sync Cycle",
       "function_code" : 44,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : [
          "gt",
@@ -1136,6 +1222,7 @@
       },
       "description" : "HW, H-Sync Width",
       "function_code" : 45,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : [
          "gt",
@@ -1150,6 +1237,7 @@
       },
       "description" : "HS, Active Pixel Start",
       "function_code" : 46,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : [
          "gt",
@@ -1164,6 +1252,7 @@
       },
       "description" : "HA, Active Pixel",
       "function_code" : 47,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : "any"
    },
@@ -1175,6 +1264,7 @@
       },
       "description" : "HP, H-Sync Polarity (0 for positive polarity, 1 for negative polarity)",
       "function_code" : 48,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -1190,6 +1280,7 @@
       },
       "description" : "VT, V-Sync Cycle",
       "function_code" : 49,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : [
          "gt",
@@ -1204,6 +1295,7 @@
       },
       "description" : "VW, V-Sync Width",
       "function_code" : 50,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : [
          "gt",
@@ -1218,6 +1310,7 @@
       },
       "description" : "VS, Active Line Start",
       "function_code" : 51,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : [
          "gt",
@@ -1232,6 +1325,7 @@
       },
       "description" : "VA, Active Line",
       "function_code" : 52,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : "any"
    },
@@ -1243,6 +1337,7 @@
       },
       "description" : "VA, Active Line (0 for positive polarity, 1 for negative polarity",
       "function_code" : 53,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -1251,13 +1346,14 @@
       ]
    },
    {
-      "comments" : "1. Oclk = Param / 10 Mhz \n2. Should be a reasonable value",
+      "comments" : "1. Oclk = Param / 10 Mhz 2. Should be a reasonable value",
       "control_type" : {
          "get" : 2,
          "set" : 1
       },
       "description" : "OCLK",
       "function_code" : 54,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : [
          "gt",
@@ -1272,6 +1368,7 @@
       },
       "description" : "Select Input Source",
       "function_code" : 0,
+      "group" : null,
       "response_values" : {
          "0" : "VGA-1",
          "1" : "VGA-2",
@@ -1296,8 +1393,9 @@
          "get" : 4,
          "set" : 3
       },
-      "description" : "Geometry: Video Aspect Ratio",
+      "description" : "Video Aspect Ratio",
       "function_code" : 1,
+      "group" : "Geometry",
       "response_values" : {
          "0" : "Normal",
          "1" : "Wide Screen",
@@ -1318,8 +1416,9 @@
          "get" : 4,
          "set" : 3
       },
-      "description" : "Geometry: Video Nonlinear",
+      "description" : "Video Nonlinear",
       "function_code" : 2,
+      "group" : "Geometry",
       "response_values" : {
          "0" : "Off",
          "1" : "Side",
@@ -1337,8 +1436,9 @@
          "get" : 4,
          "set" : 3
       },
-      "description" : "Geometry: VGA Aspect Ratio",
+      "description" : "VGA Aspect Ratio",
       "function_code" : 3,
+      "group" : "Geometry",
       "response_values" : {
          "0" : "Full Screen",
          "1" : "Native",
@@ -1359,8 +1459,9 @@
          "get" : 4,
          "set" : 3
       },
-      "description" : "Zoom: Zoom Ratio",
+      "description" : "Zoom Ratio",
       "function_code" : 4,
+      "group" : "Zoom",
       "response_values" : {
          "0" : "100%",
          "1" : "150%",
@@ -1387,8 +1488,9 @@
          "get" : 4,
          "set" : 3
       },
-      "description" : "Graphics Setting: Color Format",
+      "description" : "Color Format",
       "function_code" : 5,
+      "group" : "Graphics Setting",
       "response_values" : {
          "0" : "Default",
          "1" : "RGB",
@@ -1406,8 +1508,9 @@
          "get" : 4,
          "set" : 3
       },
-      "description" : "Video Setting: Color Format",
+      "description" : "Color Format",
       "function_code" : 6,
+      "group" : "Video Setting",
       "response_values" : {
          "0" : "Default",
          "1" : "RGB",
@@ -1425,8 +1528,9 @@
          "get" : 4,
          "set" : 3
       },
-      "description" : "Video Setting: Video Standard",
+      "description" : "Video Standard",
       "function_code" : 7,
+      "group" : "Video Setting",
       "response_values" : {
          "0" : "Video Standard - Auto",
          "1" : "Video Standard - NTSC",
@@ -1448,8 +1552,9 @@
          "get" : 4,
          "set" : 3
       },
-      "description" : "Video Setting: Film Mode",
+      "description" : "Film Mode",
       "function_code" : 8,
+      "group" : "Video Setting",
       "response_values" : {
          "0" : "Off",
          "1" : "On"
@@ -1466,8 +1571,9 @@
          "get" : 4,
          "set" : 3
       },
-      "description" : "Audio Setting: Stereo",
+      "description" : "Stereo",
       "function_code" : 9,
+      "group" : "Audio Setting",
       "response_values" : {
          "0" : "Off",
          "1" : "On"
@@ -1484,8 +1590,9 @@
          "get" : 4,
          "set" : 3
       },
-      "description" : "PIP Setting: PIP On/Off",
+      "description" : "PIP On/Off",
       "function_code" : 10,
+      "group" : "PIP Setting",
       "response_values" : {
          "0" : "Off",
          "1" : "On"
@@ -1502,8 +1609,9 @@
          "get" : 4,
          "set" : 3
       },
-      "description" : "PIP Setting: PIP Source",
+      "description" : "PIP Source",
       "function_code" : 11,
+      "group" : "PIP Setting",
       "response_values" : {
          "0" : "VGA-1",
          "1" : "VGA-2(VP-724 Only)",
@@ -1528,8 +1636,9 @@
          "get" : 4,
          "set" : 3
       },
-      "description" : "PIP Setting: PIP Size",
+      "description" : "PIP Size",
       "function_code" : 12,
+      "group" : "PIP Setting",
       "response_values" : {
          "0" : "1/25",
          "1" : "1/16",
@@ -1550,8 +1659,9 @@
          "get" : 4,
          "set" : 3
       },
-      "description" : "PIP Setting: PIP Frame",
+      "description" : "PIP Frame",
       "function_code" : 13,
+      "group" : "PIP Setting",
       "response_values" : {
          "0" : "Off",
          "1" : "On"
@@ -1568,8 +1678,9 @@
          "get" : 4,
          "set" : 3
       },
-      "description" : "Seamless Switch: Mode",
+      "description" : "Mode",
       "function_code" : 14,
+      "group" : "Seamless Switch",
       "response_values" : {
          "0" : "Fast",
          "1" : "Moderate",
@@ -1587,8 +1698,9 @@
          "get" : 4,
          "set" : 3
       },
-      "description" : "Seamless Switch: Background",
+      "description" : "Background",
       "function_code" : 15,
+      "group" : "Seamless Switch",
       "response_values" : {
          "0" : "Black",
          "1" : "Blue",
@@ -1606,8 +1718,9 @@
          "get" : 4,
          "set" : 3
       },
-      "description" : "Seamless Switch: Auto Search",
+      "description" : "Auto Search",
       "function_code" : 16,
+      "group" : "Seamless Switch",
       "response_values" : {
          "0" : "Off",
          "1" : "On"
@@ -1624,8 +1737,9 @@
          "get" : 4,
          "set" : 3
       },
-      "description" : "OSD Setting: Startup Logo",
+      "description" : "Startup Logo",
       "function_code" : 17,
+      "group" : "OSD Setting",
       "response_values" : {
          "0" : "Off",
          "1" : "On"
@@ -1642,8 +1756,9 @@
          "get" : 4,
          "set" : 3
       },
-      "description" : "OSD Setting: Size",
+      "description" : "Size",
       "function_code" : 18,
+      "group" : "OSD Setting",
       "response_values" : {
          "0" : "Normal",
          "1" : "Double"
@@ -1660,8 +1775,9 @@
          "get" : 4,
          "set" : 3
       },
-      "description" : "OSD Setting: Source Prompt",
+      "description" : "Source Prompt",
       "function_code" : 19,
+      "group" : "OSD Setting",
       "response_values" : {
          "0" : "Off",
          "1" : "On"
@@ -1678,8 +1794,9 @@
          "get" : 4,
          "set" : 3
       },
-      "description" : "OSD Setting: Blank Color",
+      "description" : "Blank Color",
       "function_code" : 20,
+      "group" : "OSD Setting",
       "response_values" : {
          "0" : "Blue",
          "1" : "Black"
@@ -1698,6 +1815,7 @@
       },
       "description" : "Output Resolution",
       "function_code" : 21,
+      "group" : null,
       "response_values" : {
          "0" : "640x480",
          "1" : "800x600",
@@ -1734,6 +1852,7 @@
       },
       "description" : "Output Refresh Rate",
       "function_code" : 22,
+      "group" : null,
       "response_values" : {
          "0" : "60Hz",
          "1" : "75Hz",
@@ -1754,6 +1873,7 @@
       },
       "description" : "Factory Reset",
       "function_code" : 23,
+      "group" : null,
       "response_values" : {
          "0" : "Cancel",
          "1" : "ok"
@@ -1770,8 +1890,9 @@
          "get" : 4,
          "set" : 3
       },
-      "description" : "Advanced: Input Button",
+      "description" : "Input Button",
       "function_code" : 24,
+      "group" : "Advanced",
       "response_values" : {
          "0" : "Freeze/Blank",
          "1" : "Freeze",
@@ -1792,6 +1913,7 @@
       },
       "description" : "Key Lock Save",
       "function_code" : 25,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -1807,6 +1929,7 @@
       },
       "description" : "Input Lock",
       "function_code" : 26,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : [
          "integer",
@@ -1822,6 +1945,7 @@
       },
       "description" : "SOG Setting",
       "function_code" : 27,
+      "group" : null,
       "response_values" : {
          "0" : "Auto",
          "1" : "RGsB",
@@ -1841,6 +1965,7 @@
       },
       "description" : "Enable OSD Timeout",
       "function_code" : 28,
+      "group" : null,
       "response_values" : {
          "0" : "Disable",
          "1" : "Enable"
@@ -1859,6 +1984,7 @@
       },
       "description" : "Select Output Mode Userdefined Parameter Group",
       "function_code" : 29,
+      "group" : null,
       "response_values" : {
          "0" : "Group 1",
          "1" : "Group 2",
@@ -1878,6 +2004,7 @@
       },
       "description" : "Set the control way of Saving Audio Volume / Treble / Bass values",
       "function_code" : 30,
+      "group" : null,
       "response_values" : {
          "0" : "Master",
          "1" : "Individual",
@@ -1897,6 +2024,7 @@
       },
       "description" : "Load Gamma/Color - Normal",
       "function_code" : 0,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -1908,6 +2036,7 @@
       },
       "description" : "Load Gamma/Color - Presentation",
       "function_code" : 1,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -1919,6 +2048,7 @@
       },
       "description" : "Load Gamma/Color - Cinema",
       "function_code" : 2,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -1930,6 +2060,7 @@
       },
       "description" : "Load Gamma/Color - Nature",
       "function_code" : 3,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -1941,6 +2072,7 @@
       },
       "description" : "Load Gamma/Color - User1",
       "function_code" : 4,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -1952,6 +2084,7 @@
       },
       "description" : "Load Gamma/Color - User2",
       "function_code" : 5,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -1963,6 +2096,7 @@
       },
       "description" : "Power",
       "function_code" : 0,
+      "group" : null,
       "response_values" : {
          "0" : "Power Down",
          "1" : "Power On"
@@ -1981,6 +2115,7 @@
       },
       "description" : "Freeze",
       "function_code" : 1,
+      "group" : null,
       "response_values" : {
          "0" : "Off",
          "1" : "On"
@@ -1999,6 +2134,7 @@
       },
       "description" : "Blank",
       "function_code" : 2,
+      "group" : null,
       "response_values" : {
          "0" : "Off",
          "1" : "On"
@@ -2017,6 +2153,7 @@
       },
       "description" : "Mute",
       "function_code" : 3,
+      "group" : null,
       "response_values" : {
          "0" : "Off",
          "1" : "On"
@@ -2035,6 +2172,7 @@
       },
       "description" : "Key Lock",
       "function_code" : 4,
+      "group" : null,
       "response_values" : {
          "0" : "Off",
          "1" : "On"
@@ -2053,6 +2191,7 @@
       },
       "description" : "\"Resolution/Refresh Rate\" Or \"Video Stand\". Example: \"Y 8 0 CR\" return: \"Z 8 0 1080i CR\"",
       "function_code" : 0,
+      "group" : null,
       "response_values" : null,
       "set_parameters" : "none"
    }

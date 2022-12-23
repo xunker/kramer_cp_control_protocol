@@ -1,12 +1,22 @@
 #!/usr/bin/env ruby
 
 # Update the JSON command reference with
-# `$ ./generator.rb | json_pp > vp-7xx.json`
+# `$ ./generator.rb json | json_pp > vp-7xx.json`
+#
+# Output a markdown version with:
+# `$ ./generator.rb markdown > vp-7xx.md`
 
 require 'json'
 
+mode = ARGV[0] || 'json'
+modes = %w[json markdown]
+unless modes.include?(mode)
+  puts "Invalid mode #{mode.inspect}. Available modes are: #{modes.join(', ')}"
+  exit 0
+end
+
 class VpCommand
-  attr_reader :control_type, :function_code, :set_parameters, :description, :response_values, :comments
+  attr_reader :control_type, :function_code, :set_parameters, :description, :group, :response_values, :comments
 
   CONTROL_TYPES = {
     zero: { set: 0, get: nil },
@@ -17,13 +27,40 @@ class VpCommand
     eight: { set: nil, get: 8 }
   }
 
-  def initialize(control_type, function_code, set_parameters, description, response_values = nil, comments = nil)
+  def initialize(control_type, function_code, set_parameters, description, group = nil, response_values = nil, comments = nil)
     @control_type = control_type
     @function_code = function_code
     @set_parameters = set_parameters
     @description = description
+    @group = group
     @response_values = response_values
     @comments = comments
+  end
+
+  # group + description
+  def full_description(include_response_values: false)
+    desc = [group, description].compact.join(': ')
+    if include_response_values && response_values&.length.to_i > 0
+      desc << '. '
+      desc << response_values.map{|k,v| "#{k}: #{v}"}.join(', ')
+    end
+    desc
+  end
+
+  def set_control
+    CONTROL_TYPES[control_type][:set]
+  end
+
+  def setter?
+    !!set_control
+  end
+
+  def get_control
+    CONTROL_TYPES[control_type][:get]
+  end
+
+  def getter?
+    !!get_control
   end
 
   def to_json(_state = nil)
@@ -32,6 +69,7 @@ class VpCommand
       function_code: function_code,
       set_parameters: set_parameters,
       description: description,
+      group: group,
       response_values: response_values,
       comments: comments
     }.to_json
@@ -50,109 +88,109 @@ end
 #   <function code>,
 #   <parameters for set>,
 #   <description>,
+#   <group>
 #   <response values>,
 #   <comments>
 # ]
 COMMANDS = [
-  [:zero, 0, :none, 'Output'],
-  [:zero, 1, :none, 'Freeze'],
-  [:zero, 2, :none, 'Power'],
-  [:zero, 3, :none, 'AV1'],
-  [:zero, 4, :none, 'AV2'],
-  [:zero, 5, :none, 'Comp'],
-  [:zero, 6, :none, 'YC1'],
-  [:zero, 7, :none, 'YC2'],
-  [:zero, 8, :none, 'VGA1'],
-  [:zero, 9, :none, 'VGA2', nil, 'VP724 DS/XL Only'],
-  [:zero, 10, :none, 'DVI'],
-  [:zero, 11, :none, 'Information'],
-  [:zero, 12, :none, 'Area Left Up'],
-  [:zero, 13, :none, 'Area Middle Up'],
-  [:zero, 14, :none, 'Area Right Up'],
-  [:zero, 15, :none, 'Area Left Center'],
-  [:zero, 16, :none, 'Area Middle Center'],
-  [:zero, 17, :none, 'Area Right Center'],
-  [:zero, 18, :none, 'Area Left Down'],
-  [:zero, 19, :none, 'Area Middle Down'],
-  [:zero, 20, :none, 'Area Right Dow'],
-  [:zero, 21, :none, 'Auto Image'],
-  [:zero, 22, :none, 'Menu'],
-  [:zero, 23, :none, 'Up'],
-  [:zero, 24, :none, 'Left'],
-  [:zero, 25, :none, 'Enter'],
-  [:zero, 26, :none, 'Right'],
-  [:zero, 27, :none, 'Down'],
-  [:zero, 28, :none, 'Auto Gain'],
-  [:zero, 29, :none, 'PIP'],
-  [:zero, 30, :none, 'Swap'],
-  [:zero, 31, :none, 'Contrast'],
-  [:zero, 32, :none, 'Brightness'],
-  [:zero, 33, :none, 'Zoom In'],
-  [:zero, 34, :none, 'Zoom Out'],
-  [:zero, 35, :none, 'Volume Down'],
-  [:zero, 36, :none, 'Mute'],
-  [:zero, 37, :none, 'Volume Up'],
-  [:zero, 38, :none, 'Color Mode'],
-  [:zero, 39, :none, 'Aspect Ratio'],
+  [:zero, 0, :none, 'Output', 'Remote Control Button'],
+  [:zero, 1, :none, 'Freeze', 'Remote Control Button'],
+  [:zero, 2, :none, 'Power', 'Remote Control Button'],
+  [:zero, 3, :none, 'AV1', 'Remote Control Button'],
+  [:zero, 4, :none, 'AV2', 'Remote Control Button'],
+  [:zero, 5, :none, 'Comp', 'Remote Control Button'],
+  [:zero, 6, :none, 'YC1', 'Remote Control Button'],
+  [:zero, 7, :none, 'YC2', 'Remote Control Button'],
+  [:zero, 8, :none, 'VGA1', 'Remote Control Button'],
+  [:zero, 9, :none, 'VGA2', 'Remote Control Button', nil, 'VP724 DS/XL Only'],
+  [:zero, 10, :none, 'DVI', 'Remote Control Button'],
+  [:zero, 11, :none, 'Information', 'Remote Control Button'],
+  [:zero, 12, :none, 'Area Left Up', 'Remote Control Button'],
+  [:zero, 13, :none, 'Area Middle Up', 'Remote Control Button'],
+  [:zero, 14, :none, 'Area Right Up', 'Remote Control Button'],
+  [:zero, 15, :none, 'Area Left Center', 'Remote Control Button'],
+  [:zero, 16, :none, 'Area Middle Center', 'Remote Control Button'],
+  [:zero, 17, :none, 'Area Right Center', 'Remote Control Button'],
+  [:zero, 18, :none, 'Area Left Down', 'Remote Control Button'],
+  [:zero, 19, :none, 'Area Middle Down', 'Remote Control Button'],
+  [:zero, 20, :none, 'Area Right Dow', 'Remote Control Button'],
+  [:zero, 21, :none, 'Auto Image', 'Remote Control Button'],
+  [:zero, 22, :none, 'Menu', 'Remote Control Button'],
+  [:zero, 23, :none, 'Up', 'Remote Control Button'],
+  [:zero, 24, :none, 'Left', 'Remote Control Button'],
+  [:zero, 25, :none, 'Enter', 'Remote Control Button'],
+  [:zero, 26, :none, 'Right', 'Remote Control Button'],
+  [:zero, 27, :none, 'Down', 'Remote Control Button'],
+  [:zero, 28, :none, 'Auto Gain', 'Remote Control Button'],
+  [:zero, 29, :none, 'PIP', 'Remote Control Button'],
+  [:zero, 30, :none, 'Swap', 'Remote Control Button'],
+  [:zero, 31, :none, 'Contrast', 'Remote Control Button'],
+  [:zero, 32, :none, 'Brightness', 'Remote Control Button'],
+  [:zero, 33, :none, 'Zoom In', 'Remote Control Button'],
+  [:zero, 34, :none, 'Zoom Out', 'Remote Control Button'],
+  [:zero, 35, :none, 'Volume Down', 'Remote Control Button'],
+  [:zero, 36, :none, 'Mute', 'Remote Control Button'],
+  [:zero, 37, :none, 'Volume Up', 'Remote Control Button'],
+  [:zero, 38, :none, 'Color Mode', 'Remote Control Button'],
+  [:zero, 39, :none, 'Aspect Ratio', 'Remote Control Button'],
 
-  [:set_a, 0, [:integer, -10, 10], 'Gamma and Color: User1 Gamma'],
-  [:set_a, 1, [:integer, 0, 127], 'Gamma and Color: User1 Color Temp Red'],
-  [:set_a, 2, [:integer, 0, 127], 'Gamma and Color: User1 Color Temp Green'],
-  [:set_a, 3, [:integer, 0, 127], 'Gamma and Color: User1 Color Temp Blue'],
-  [:set_a, 4, [:integer, 0, 32], 'Gamma and Color: User1 Color Manager Red'],
-  [:set_a, 5, [:integer, 0, 32], 'Gamma and Color: User1 Color Manager Green'],
-  [:set_a, 6, [:integer, 0, 32], 'Gamma and Color: User1 Color Manager Blue'],
-  [:set_a, 7, [:integer, 0, 32], 'Gamma and Color: User1 Color Manager Yellow'],
-  [:set_a, 8, [:integer, -10, 10], 'Gamma and Color: User2 Gamma'],
-  [:set_a, 9, [:integer, 0, 127], 'Gamma and Color: User2 Color Temp Red'],
-  [:set_a, 10, [:integer, 0, 127], 'Gamma and Color: User2 Color Temp Green'],
-  [:set_a, 11, [:integer, 0, 127], 'Gamma and Color: User2 Color Temp Blue'],
-  [:set_a, 12, [:integer, 0, 32], 'Gamma and Color: User2 Color Manager Red'],
-  [:set_a, 13, [:integer, 0, 32], 'Gamma and Color: User2 Color Manager Green'],
-  [:set_a, 14, [:integer, 0, 32], 'Gamma and Color: User2 Color Manager Blue'],
-  [:set_a, 15, [:integer, 0, 32], 'Gamma and Color: User2 Color Manager Yellow'],
+  [:set_a, 0, [:integer, -10, 10], 'User1 Gamma', 'Gamma and Color'],
+  [:set_a, 1, [:integer, 0, 127], 'User1 Color Temp Red', 'Gamma and Color'],
+  [:set_a, 2, [:integer, 0, 127], 'User1 Color Temp Green', 'Gamma and Color'],
+  [:set_a, 3, [:integer, 0, 127], 'User1 Color Temp Blue', 'Gamma and Color'],
+  [:set_a, 4, [:integer, 0, 32], 'User1 Color Manager Red', 'Gamma and Color'],
+  [:set_a, 5, [:integer, 0, 32], 'User1 Color Manager Green', 'Gamma and Color'],
+  [:set_a, 6, [:integer, 0, 32], 'User1 Color Manager Blue', 'Gamma and Color'],
+  [:set_a, 7, [:integer, 0, 32], 'User1 Color Manager Yellow', 'Gamma and Color'],
+  [:set_a, 8, [:integer, -10, 10], 'User2 Gamma', 'Gamma and Color'],
+  [:set_a, 9, [:integer, 0, 127], 'User2 Color Temp Red', 'Gamma and Color'],
+  [:set_a, 10, [:integer, 0, 127], 'User2 Color Temp Green', 'Gamma and Color'],
+  [:set_a, 11, [:integer, 0, 127], 'User2 Color Temp Blue', 'Gamma and Color'],
+  [:set_a, 12, [:integer, 0, 32], 'User2 Color Manager Red', 'Gamma and Color'],
+  [:set_a, 13, [:integer, 0, 32], 'User2 Color Manager Green', 'Gamma and Color'],
+  [:set_a, 14, [:integer, 0, 32], 'User2 Color Manager Blue', 'Gamma and Color'],
+  [:set_a, 15, [:integer, 0, 32], 'User2 Color Manager Yellow', 'Gamma and Color'],
   [:set_a, 16, [:integer, 0, 127], 'Brightness'],
   [:set_a, 17, [:integer, 0, 127], 'Contrast'],
-  [:set_a, 18, [:integer, -32, 32], 'Aspect Ratio: User Define H-Zoom'],
-  [:set_a, 19, [:integer, -32, 32], 'Aspect Ratio: User Define V-Zoom'],
-  [:set_a, 20, [:integer, -32, 32], 'Aspect Ratio: User Define H-Pan'],
-  [:set_a, 21, [:integer, -32, 32], 'Aspect Ratio: User Define V-Pan'],
-  [:set_a, 22, [:integer, 0, 255], 'Graphics Setting: H-Position'],
-  [:set_a, 23, [:integer, 0, 255], 'Graphics Setting: V-Position'],
-  [:set_a, 24, [:integer, 0, 127], 'Graphics Setting: Color'],
-  [:set_a, 25, [:integer, 0, 127], 'Graphics Setting: Hue'],
-  [:set_a, 26, [:integer, 0, 16], 'Graphics Setting: Sharpness'],
-  [:set_a, 27, [:integer, 0, 100], 'Graphics Setting: Frequency'],
-  [:set_a, 28, [:integer, 0, 31], 'Graphics Setting: Phase'],
-  [:set_a, 29, [:integer, 0, 127], 'Video Setting: Color'],
-  [:set_a, 30, [:integer, 0, 127], 'Video Setting: Hue'],
-  [:set_a, 31, [:integer, 0, 16], 'Video Setting: Sharpness'],
-  [:set_a, 32, [:integer, 0, 20], 'Video Setting: H-Position'],
-  [:set_a, 33, [:integer, 0, 20], 'Video V-Position for NTSC/NTSC 4.43/PAL-M/PAL 60', nil, 'Same function code as for PAL V-Position'],
-  [:set_a, 33, [:integer, 0, 39], 'Video V-Position for PAL/PAL-N/SECAM/NTSC 4.43 50', nil, 'Same function code as for NTSC V-Position'],
-  [:set_a, 34, [:integer, 0, 32], 'Audio Setting: Volume'],
-  [:set_a, 35, [:integer, 0, 12], 'Audio Setting: Treble'],
-  [:set_a, 36, [:integer, 0, 12], 'Audio Setting: Bass'],
-  [:set_a, 37, [:integer, 0, 36], 'PIP Setting: H-Position'],
-  [:set_a, 38, [:integer, 0, 36], 'PIP Setting: V-Position'],
-  [:set_a, 39, [:integer, 0, 255], 'PIP Setting: User Define V-Size'],
-  [:set_a, 40, [:integer, 0, 255], 'PIP Setting: User Define H-Size'],
-  [:set_a, 41, [:integer, 0, 36], 'OSD Setting :H-Position'],
-  [:set_a, 42, [:integer, 0, 36], 'OSD Setting: V-Position'],
-  [:set_a, 43, [:integer, 3, 60], 'OSD Setting: OSD Time Out'],
-  [:set_a, 44, [:gt, 100], 'HT, H-Sync Cycle', nil, 'Setting Command should be a reasonable value)'],
-  [:set_a, 45, [:gt, 0], 'HW, H-Sync Width', nil, 'Getting Command return the current group parameter (refer to command "Y 3 29 X" or "Y 4 29 " )'],
-  [:set_a, 46, [:gt, 0], 'HS, Active Pixel Start', nil, '1. Setting Command should be a reasonable value 2. Getting Command return the current group parameter (refer to command "Y 3 29 X" or "Y 4 29 " )'],
-  [:set_a, 47, :any, 'HA, Active Pixel', nil, '1. Setting Command should be a reasonable value 2. Getting Command return the current group parameter (refer to command "Y 3 29 X" or "Y 4 29 " )'],
-  [:set_a, 48, [:integer, 0, 1], 'HP, H-Sync Polarity (0 for positive polarity, 1 for negative polarity)', nil, '1. Setting Command should be a reasonable value 2. Getting Command return the current group parameter (refer to command "Y 3 29 X" or "Y 4 29 " )'],
-  [:set_a, 49, [:gt, 0], 'VT, V-Sync Cycle', nil, '1. Setting Command should be a reasonable value 2. Getting Command return the current group parameter (refer to command "Y 3 29 X" or "Y 4 29 " )'],
-  [:set_a, 50, [:gt, 0], 'VW, V-Sync Width', nil, '1. Setting Command should be a reasonable value 2. Getting Command return the current group parameter (refer to command "Y 3 29 X" or "Y 4 29 " )'],
-  [:set_a, 51, [:gt, 0], 'VS, Active Line Start', nil, '1. Setting Command should be a reasonable value 2. Getting Command return the current group parameter (refer to command "Y 3 29 X" or "Y 4 29 " )'],
-  [:set_a, 52, :any, 'VA, Active Line', nil, '1. Setting Command should be a reasonable value 2. Getting Command return the current group parameter (refer to command "Y 3 29 X" or "Y 4 29 " )'],
-  [:set_a, 53, [:integer, 0, 1], 'VA, Active Line (0 for positive polarity, 1 for negative polarity', nil, '1. Setting Command should be a reasonable value 2. Getting Command return the current group parameter (refer to command "Y 3 29 X" or "Y 4 29 " )'],
-  [:set_a, 54, [:gt, 100], 'OCLK', nil, '1. Oclk = Param / 10 Mhz 
-2. Should be a reasonable value'],
-  [:set_b, 0, [:integer, 0, 9], 'Select Input Source', {
+  [:set_a, 18, [:integer, -32, 32], 'User Define H-Zoom', 'Aspect Ratio'],
+  [:set_a, 19, [:integer, -32, 32], 'User Define V-Zoom', 'Aspect Ratio'],
+  [:set_a, 20, [:integer, -32, 32], 'User Define H-Pan', 'Aspect Ratio'],
+  [:set_a, 21, [:integer, -32, 32], 'User Define V-Pan', 'Aspect Ratio'],
+  [:set_a, 22, [:integer, 0, 255], 'H-Position', 'Graphics Setting'],
+  [:set_a, 23, [:integer, 0, 255], 'V-Position', 'Graphics Setting'],
+  [:set_a, 24, [:integer, 0, 127], 'Color', 'Graphics Setting'],
+  [:set_a, 25, [:integer, 0, 127], 'Hue', 'Graphics Setting'],
+  [:set_a, 26, [:integer, 0, 16], 'Sharpness', 'Graphics Setting'],
+  [:set_a, 27, [:integer, 0, 100], 'Frequency', 'Graphics Setting'],
+  [:set_a, 28, [:integer, 0, 31], 'Phase', 'Graphics Setting'],
+  [:set_a, 29, [:integer, 0, 127], 'Color', 'Video Setting'],
+  [:set_a, 30, [:integer, 0, 127], 'Hue', 'Video Setting'],
+  [:set_a, 31, [:integer, 0, 16], 'Sharpness', 'Video Setting'],
+  [:set_a, 32, [:integer, 0, 20], 'H-Position', 'Video Setting'],
+  [:set_a, 33, [:integer, 0, 20], 'Video V-Position for NTSC/NTSC 4.43/PAL-M/PAL 60', nil, nil, 'Same function code as for PAL V-Position'],
+  [:set_a, 33, [:integer, 0, 39], 'Video V-Position for PAL/PAL-N/SECAM/NTSC 4.43 50', nil, nil, 'Same function code as for NTSC V-Position'],
+  [:set_a, 34, [:integer, 0, 32], 'Volume', 'Audio Setting'],
+  [:set_a, 35, [:integer, 0, 12], 'Treble', 'Audio Setting'],
+  [:set_a, 36, [:integer, 0, 12], 'Bass', 'Audio Setting'],
+  [:set_a, 37, [:integer, 0, 36], 'H-Position', 'PIP Setting'],
+  [:set_a, 38, [:integer, 0, 36], 'V-Position', 'PIP Setting'],
+  [:set_a, 39, [:integer, 0, 255], 'User Define V-Size', 'PIP Setting'],
+  [:set_a, 40, [:integer, 0, 255], 'User Define H-Size', 'PIP Setting'],
+  [:set_a, 41, [:integer, 0, 36], 'H-Position', 'OSD Setting'],
+  [:set_a, 42, [:integer, 0, 36], 'V-Position', 'OSD Setting'],
+  [:set_a, 43, [:integer, 3, 60], 'OSD Time Out', 'OSD Setting'],
+  [:set_a, 44, [:gt, 100], 'HT, H-Sync Cycle', nil, nil, 'Setting Command should be a reasonable value)'],
+  [:set_a, 45, [:gt, 0], 'HW, H-Sync Width', nil, nil, 'Getting Command return the current group parameter (refer to command "Y 3 29 X" or "Y 4 29 " )'],
+  [:set_a, 46, [:gt, 0], 'HS, Active Pixel Start', nil, nil, '1. Setting Command should be a reasonable value 2. Getting Command return the current group parameter (refer to command "Y 3 29 X" or "Y 4 29 " )'],
+  [:set_a, 47, :any, 'HA, Active Pixel', nil, nil, '1. Setting Command should be a reasonable value 2. Getting Command return the current group parameter (refer to command "Y 3 29 X" or "Y 4 29 " )'],
+  [:set_a, 48, [:integer, 0, 1], 'HP, H-Sync Polarity (0 for positive polarity, 1 for negative polarity)', nil, nil, '1. Setting Command should be a reasonable value 2. Getting Command return the current group parameter (refer to command "Y 3 29 X" or "Y 4 29 " )'],
+  [:set_a, 49, [:gt, 0], 'VT, V-Sync Cycle', nil, nil, '1. Setting Command should be a reasonable value 2. Getting Command return the current group parameter (refer to command "Y 3 29 X" or "Y 4 29 " )'],
+  [:set_a, 50, [:gt, 0], 'VW, V-Sync Width', nil, nil, '1. Setting Command should be a reasonable value 2. Getting Command return the current group parameter (refer to command "Y 3 29 X" or "Y 4 29 " )'],
+  [:set_a, 51, [:gt, 0], 'VS, Active Line Start', nil, nil, '1. Setting Command should be a reasonable value 2. Getting Command return the current group parameter (refer to command "Y 3 29 X" or "Y 4 29 " )'],
+  [:set_a, 52, :any, 'VA, Active Line', nil, nil, '1. Setting Command should be a reasonable value 2. Getting Command return the current group parameter (refer to command "Y 3 29 X" or "Y 4 29 " )'],
+  [:set_a, 53, [:integer, 0, 1], 'VA, Active Line (0 for positive polarity, 1 for negative polarity', nil, nil, '1. Setting Command should be a reasonable value 2. Getting Command return the current group parameter (refer to command "Y 3 29 X" or "Y 4 29 " )'],
+  [:set_a, 54, [:gt, 100], 'OCLK', nil, nil, '1. Oclk = Param / 10 Mhz 2. Should be a reasonable value'],
+  [:set_b, 0, [:integer, 0, 9], 'Select Input Source', nil, {
     0 => 'VGA-1',
     1 => 'VGA-2',
     2 => 'DVI',
@@ -164,10 +202,10 @@ COMMANDS = [
     8 => 'Scart',
     9 => 'TV'
   }, 'VGA-2 is VP-724 Only'],
-  [:set_b, 1, [:integer, 0, 5], 'Geometry: Video Aspect Ratio', { 0 => 'Normal', 1 => 'Wide Screen', 2 => 'Pan & Scan', 3 => '4:3', 4 => '16:9', 5 => 'UserDefine' } ],
-  [:set_b, 2, [:integer, 0, 3], 'Geometry: Video Nonlinear', { 0 => 'Off', 1 => 'Side', 2 => 'Middle' }],
-  [:set_b, 3, [:integer, 0, 5], 'Geometry: VGA Aspect Ratio', { 0 => 'Full Screen', 4 => '16:9', 1 => 'Native', 2 => 'NonLinear', 3 => '4:3', 5 => 'UserDefine' }],
-  [:set_b, 4, [:integer, 0, 10], 'Zoom: Zoom Ratio', {
+  [:set_b, 1, [:integer, 0, 5], 'Video Aspect Ratio', 'Geometry', { 0 => 'Normal', 1 => 'Wide Screen', 2 => 'Pan & Scan', 3 => '4:3', 4 => '16:9', 5 => 'UserDefine' } ],
+  [:set_b, 2, [:integer, 0, 3], 'Video Nonlinear', 'Geometry', { 0 => 'Off', 1 => 'Side', 2 => 'Middle' }],
+  [:set_b, 3, [:integer, 0, 5], 'VGA Aspect Ratio', 'Geometry', { 0 => 'Full Screen', 4 => '16:9', 1 => 'Native', 2 => 'NonLinear', 3 => '4:3', 5 => 'UserDefine' }],
+  [:set_b, 4, [:integer, 0, 10], 'Zoom Ratio', 'Zoom', {
     0 => '100%',
     1 => '150%',
     2 => '200%',
@@ -181,10 +219,10 @@ COMMANDS = [
     10 => '400%',
     11 => 'Custom'
   }],
-  [:set_b, 5, [:integer, 0, 2], 'Graphics Setting: Color Format', { 0 => 'Default', 1 => 'RGB', 2 => 'YUV' }],
-  [:set_b, 6, [:integer, 0, 2], 'Video Setting: Color Format', { 0 => 'Default', 1 => 'RGB', 2 => 'YUV' }],
+  [:set_b, 5, [:integer, 0, 2], 'Color Format', 'Graphics Setting', { 0 => 'Default', 1 => 'RGB', 2 => 'YUV' }],
+  [:set_b, 6, [:integer, 0, 2], 'Color Format', 'Video Setting', { 0 => 'Default', 1 => 'RGB', 2 => 'YUV' }],
 
-  [:set_b, 7, [:integer, 0, 6], 'Video Setting: Video Standard', {
+  [:set_b, 7, [:integer, 0, 6], 'Video Standard', 'Video Setting', {
     0 => 'Video Standard - Auto',
     1 => 'Video Standard - NTSC',
     2 => 'Video Standard - NTSC 4.43',
@@ -193,21 +231,21 @@ COMMANDS = [
     5 => 'Video Standard - PAL-M',
     6 => 'Video Standard - SECAM'
   }],
-  [:set_b, 8, [:integer, 0, 1], 'Video Setting: Film Mode', {0 => 'Off', 1 => 'On'}],
-  [:set_b, 9, [:integer, 0, 1], 'Audio Setting: Stereo', {0 => 'Off', 1 => 'On'}],
-  [:set_b, 10, [:integer, 0, 1], 'PIP Setting: PIP On/Off', {0 => 'Off', 1 => 'On'}],
-  [:set_b, 11, [:integer, 0, 9], 'PIP Setting: PIP Source', {0 => 'VGA-1', 1 => 'VGA-2(VP-724 Only)', 3 => 'Component', 5 => 'AV-1', 7 => 'AV-2', 2 => 'DVI', 4 => 'YC-1', 6 => 'YV-2', 9 => 'TV', 8 => 'SCART'}, 'VGA-2 is VP-724 Only'],
-  [:set_b, 12, [:integer, 0, 5], 'PIP Setting: PIP Size', { 1 => '1/16', 3 => '1/4', 0 => '1/25', 2 => '1/9', 5 => 'User Define', 4 => 'Split' }],
-  [:set_b, 13, [:integer, 0, 5], 'PIP Setting: PIP Frame', {0 => 'Off', 1 => 'On'}],
+  [:set_b, 8, [:integer, 0, 1], 'Film Mode', 'Video Setting', {0 => 'Off', 1 => 'On'}],
+  [:set_b, 9, [:integer, 0, 1], 'Stereo', 'Audio Setting', {0 => 'Off', 1 => 'On'}],
+  [:set_b, 10, [:integer, 0, 1], 'PIP On/Off', 'PIP Setting', {0 => 'Off', 1 => 'On'}],
+  [:set_b, 11, [:integer, 0, 9], 'PIP Source', 'PIP Setting', {0 => 'VGA-1', 1 => 'VGA-2(VP-724 Only)', 3 => 'Component', 5 => 'AV-1', 7 => 'AV-2', 2 => 'DVI', 4 => 'YC-1', 6 => 'YV-2', 9 => 'TV', 8 => 'SCART'}, 'VGA-2 is VP-724 Only'],
+  [:set_b, 12, [:integer, 0, 5], 'PIP Size', 'PIP Setting', { 1 => '1/16', 3 => '1/4', 0 => '1/25', 2 => '1/9', 5 => 'User Define', 4 => 'Split' }],
+  [:set_b, 13, [:integer, 0, 5], 'PIP Frame', 'PIP Setting', {0 => 'Off', 1 => 'On'}],
 
-  [:set_b, 14, [:integer, 0, 2], 'Seamless Switch: Mode', { 0 => 'Fast', 1 => 'Moderate', 2 => 'Safe' }],
-  [:set_b, 15, [:integer, 0, 2], 'Seamless Switch: Background', {0 => 'Black', 1 => 'Blue', 2 => 'Disable Analog Syncs'}],
-  [:set_b, 16, [:integer, 0, 2], 'Seamless Switch: Auto Search', {0 => 'Off', 1 => 'On'}],
-  [:set_b, 17, [:integer, 0, 1], 'OSD Setting: Startup Logo', {0 => 'Off', 1 => 'On'}],
-  [:set_b, 18, [:integer, 0, 1], 'OSD Setting: Size', { 0 => 'Normal', 1 => 'Double' }],
-  [:set_b, 19, [:integer, 0, 1], 'OSD Setting: Source Prompt', {0 => 'Off', 1 => 'On'}],
-  [:set_b, 20, [:integer, 0, 1], 'OSD Setting: Blank Color', { 0 => 'Blue', 1 => 'Black' }],
-  [:set_b, 21, [:integer, 0, 17], 'Output Resolution', {
+  [:set_b, 14, [:integer, 0, 2], 'Mode', 'Seamless Switch', { 0 => 'Fast', 1 => 'Moderate', 2 => 'Safe' }],
+  [:set_b, 15, [:integer, 0, 2], 'Background' , 'Seamless Switch', {0=> 'Black', 1 => 'Blue', 2 => 'Disable Analog Syncs'}],
+  [:set_b, 16, [:integer, 0, 2], 'Auto Search', 'Seamless Switch', {0 => 'Off', 1 => 'On'}],
+  [:set_b, 17, [:integer, 0, 1], 'Startup Logo', 'OSD Setting', {0 => 'Off', 1 => 'On'}],
+  [:set_b, 18, [:integer, 0, 1], 'Size', 'OSD Setting', { 0 => 'Normal', 1 => 'Double' }],
+  [:set_b, 19, [:integer, 0, 1], 'Source Prompt', 'OSD Setting', {0 => 'Off', 1 => 'On'}],
+  [:set_b, 20, [:integer, 0, 1], 'Blank Color', 'OSD Setting', { 0 => 'Blue', 1 => 'Black' }],
+  [:set_b, 21, [:integer, 0, 17], 'Output Resolution', nil, {
     0 => '640x480',
     1 => '800x600',
     2 => '1024x768',
@@ -229,15 +267,15 @@ COMMANDS = [
     18 => '1280x768',
     19 => 'UserDefine'
   }, 'HDTV output is VP723/724 Only 1080P only on KI238 and 80P DAC Board'],
-  [:set_b, 22, [:integer, 0, 3], 'Output Refresh Rate', { 0 => '60Hz', 1 => '75Hz', 2 => '85Hz', 3 => '50Hz' }],
-  [:set_b, 23, [:integer, 0, 1], 'Factory Reset', { 0 => 'Cancel', 1 => 'ok' }],
-  [:set_b, 24, [:integer, 0, 3], 'Advanced: Input Button', {0 => 'Freeze/Blank', 1 => 'Freeze', 2 => 'Blank', 3 => 'Ignore'}],
-  [:set_b, 25, [:integer, 0, 1], 'Key Lock Save'],
-  [:set_b, 26, [:integer, 0, 1], 'Input Lock'],
-  [:set_b, 27, [:integer, 0, 1], 'SOG Setting', { 0 => 'Auto', 1 => 'RGsB', 2 => 'DTV' }, 'KI239 Only'],
-  [:set_b, 28, [:integer, 0, 1], 'Enable OSD Timeout',  { 0 => 'Disable', 1 => 'Enable' }],
-  [:set_b, 29, [:integer, 0, 2], 'Select Output Mode Userdefined Parameter Group', { 0 => 'Group 1', 1 => 'Group 2', 2 => 'Group 3' }],
-  [:set_b, 30, [:integer, 0, 2], 'Set the control way of Saving Audio Volume / Treble / Bass values', { 1 => 'Individual', 0 => 'Master', 2 => 'Linked' }],
+  [:set_b, 22, [:integer, 0, 3], 'Output Refresh Rate', nil, { 0 => '60Hz', 1 => '75Hz', 2 => '85Hz', 3 => '50Hz' }],
+  [:set_b, 23, [:integer, 0, 1], 'Factory Reset', nil, { 0 => 'Cancel', 1 => 'ok' }],
+  [:set_b, 24, [:integer, 0, 3], 'Input Button', 'Advanced', {0 => 'Freeze/Blank', 1 => 'Freeze', 2 => 'Blank', 3 => 'Ignore'}],
+  [:set_b, 25, [:integer, 0, 1], 'Key Lock Save', nil],
+  [:set_b, 26, [:integer, 0, 1], 'Input Lock', nil],
+  [:set_b, 27, [:integer, 0, 1], 'SOG Setting', nil, { 0 => 'Auto', 1 => 'RGsB', 2 => 'DTV' }, 'KI239 Only'],
+  [:set_b, 28, [:integer, 0, 1], 'Enable OSD Timeout', nil,  { 0 => 'Disable', 1 => 'Enable' }],
+  [:set_b, 29, [:integer, 0, 2], 'Select Output Mode Userdefined Parameter Group', nil, { 0 => 'Group 1', 1 => 'Group 2', 2 => 'Group 3' }],
+  [:set_b, 30, [:integer, 0, 2], 'Set the control way of Saving Audio Volume / Treble / Bass values', nil, { 1 => 'Individual', 0 => 'Master', 2 => 'Linked' }],
 
   [:five, 0, :none, 'Load Gamma/Color - Normal'],
   [:five, 1, :none, 'Load Gamma/Color - Presentation'],
@@ -246,13 +284,49 @@ COMMANDS = [
   [:five, 4, :none, 'Load Gamma/Color - User1'],
   [:five, 5, :none, 'Load Gamma/Color - User2'],
 
-  [:set_c, 0, [:integer, 0, 1], 'Power', {0 => 'Power Down', 1 => 'Power On'}],
-  [:set_c, 1, [:integer, 0, 1], 'Freeze', {0 => 'Off', 1 => 'On'}],
-  [:set_c, 2, [:integer, 0, 1], 'Blank', {0 => 'Off', 1 => 'On'}],
-  [:set_c, 3, [:integer, 0, 1], 'Mute', {0 => 'Off', 1 => 'On'}],
-  [:set_c, 4, [:integer, 0, 1], 'Key Lock', {0 => 'Off', 1 => 'On'}],
+  [:set_c, 0, [:integer, 0, 1], 'Power', nil, {0 => 'Power Down', 1 => 'Power On'}],
+  [:set_c, 1, [:integer, 0, 1], 'Freeze', nil, {0 => 'Off', 1 => 'On'}],
+  [:set_c, 2, [:integer, 0, 1], 'Blank', nil, {0 => 'Off', 1 => 'On'}],
+  [:set_c, 3, [:integer, 0, 1], 'Mute', nil, {0 => 'Off', 1 => 'On'}],
+  [:set_c, 4, [:integer, 0, 1], 'Key Lock', nil, {0 => 'Off', 1 => 'On'}],
 
-  [:eight, 0, :none, '"Resolution/Refresh Rate" Or "Video Stand". Example: "Y 8 0 CR" return: "Z 8 0 1080i CR"'],
+  [:eight, 0, :none, '"Resolution/Refresh Rate" Or "Video Stand". Example: "Y 8 0 CR" return: "Z 8 0 1080i CR"', nil],
 ].map{|command_def| VpCommand.new(*command_def)}
 
-puts COMMANDS.to_json
+if mode == 'markdown'
+  # Markdown generation
+  puts "# VP-719 Command Reference"
+  puts "As a sanity check against [the original](https://cdn.kramerav.com/web/downloads/protocols/vp-719xl_720xl_vp-724xl_protocol.pdf)"
+  fields = ["Control Type", "Function", "Parameter (for Set)", "Function Group", "Function Description", "Response Values", "Comment"]
+  puts fields.join(' | ')
+  puts fields.map{|f| '-'*(f.length)}.join('|')
+  puts COMMANDS.map{|cmd|
+
+    control_type_f = if (single_control = [cmd.set_control, cmd.get_control].join).length < 2
+      single_control
+    else
+      "#{cmd.set_control}: Set, #{cmd.get_control}: Get"
+    end
+
+    set_parameters = if cmd.set_parameters == :none
+      'N/A'
+    elsif cmd.set_parameters == :any
+      '-'
+    elsif cmd.set_parameters[0] == :integer
+      cmd.set_parameters[1..2].join('~')
+    elsif cmd.set_parameters[0] == :gt  
+      "> #{cmd.set_parameters[1]}"
+    else
+      "UNKNOWN! FIX ME"
+    end
+
+    response_values = if cmd.response_values&.length.to_i > 0
+      cmd.response_values.map{|k,v| "#{k}: #{v}"}.join(', ')
+    end
+
+    [control_type_f, cmd.function_code, set_parameters, cmd.group, cmd.description, response_values, cmd.comments].join(' | ')
+  }.join("\n")
+else
+  # assume json
+  puts COMMANDS.to_json
+end

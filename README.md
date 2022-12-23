@@ -7,7 +7,9 @@ A collection of the RS-232 Serial (and serial-over-ethernet or serial-over-IR) p
 ### Files
 [vp-7xx.json](./vp-7xx.json): command definitions for VP-719 through -724 (and will probably work for other -7xx models). **This is probably the file you want to use.**
 
-[generator.rb](./generator.rb): ruby source files used to generate the above JSON.
+[vp-7xx.md](./vp-7xx.md): A markdown version of the commands in the json file, for use by silly humans with silly eyes who need to read things.
+
+[generator.rb](./generator.rb): ruby source files used to generate the above JSON and Markdown.
 
 ### Command Objects in Files
 
@@ -21,6 +23,7 @@ The command files are an array of JSON object, and every object looks like this:
         "set" : 3
     },
     "description" : "Select Input Source",
+    "group": null,
     "function_code" : 0,
     "response_values" : {
         "0" : "VGA-1",
@@ -52,6 +55,8 @@ The properties in each object are:
   - likewise, if a command can only be used to _get_, then the `set` property will be `null'
 * description
   - description of the command
+* group
+  - functional grouping, if applicable
 * function_code
   - the function code to be passed to the device, along with the control type
 * response_values
