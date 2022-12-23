@@ -2,7 +2,7 @@
 
 As a sanity check against [the original](https://cdn.kramerav.com/web/downloads/protocols/vp-719xl_720xl_vp-724xl_protocol.pdf)
 
-More details at https://github.com/xunker/kramer_cp_control_protocol/
+More details at https://github.com/xunker/kramer_vp_control_protocol/
 
 ---
 
