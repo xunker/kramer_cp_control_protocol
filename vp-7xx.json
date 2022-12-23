@@ -1532,13 +1532,13 @@
       "function_code" : 7,
       "group" : "Video Setting",
       "response_values" : {
-         "0" : "Video Standard - Auto",
-         "1" : "Video Standard - NTSC",
-         "2" : "Video Standard - NTSC 4.43",
-         "3" : "Video Standard - PAL",
-         "4" : "Video Standard - PAL-N",
-         "5" : "Video Standard - PAL-M",
-         "6" : "Video Standard - SECAM"
+         "0" : "Auto",
+         "1" : "NTSC",
+         "2" : "NTSC 4.43",
+         "3" : "PAL",
+         "4" : "PAL-N",
+         "5" : "PAL-M",
+         "6" : "SECAM"
       },
       "set_parameters" : [
          "integer",
@@ -2022,9 +2022,9 @@
          "get" : null,
          "set" : 5
       },
-      "description" : "Load Gamma/Color - Normal",
+      "description" : "Normal",
       "function_code" : 0,
-      "group" : null,
+      "group" : "Load Gamma/Color",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -2034,9 +2034,9 @@
          "get" : null,
          "set" : 5
       },
-      "description" : "Load Gamma/Color - Presentation",
+      "description" : "Presentation",
       "function_code" : 1,
-      "group" : null,
+      "group" : "Load Gamma/Color",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -2046,9 +2046,9 @@
          "get" : null,
          "set" : 5
       },
-      "description" : "Load Gamma/Color - Cinema",
+      "description" : "Cinema",
       "function_code" : 2,
-      "group" : null,
+      "group" : "Load Gamma/Color",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -2058,9 +2058,9 @@
          "get" : null,
          "set" : 5
       },
-      "description" : "Load Gamma/Color - Nature",
+      "description" : "Nature",
       "function_code" : 3,
-      "group" : null,
+      "group" : "Load Gamma/Color",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -2070,9 +2070,9 @@
          "get" : null,
          "set" : 5
       },
-      "description" : "Load Gamma/Color - User1",
+      "description" : "User1",
       "function_code" : 4,
-      "group" : null,
+      "group" : "Load Gamma/Color",
       "response_values" : null,
       "set_parameters" : "none"
    },
@@ -2082,9 +2082,9 @@
          "get" : null,
          "set" : 5
       },
-      "description" : "Load Gamma/Color - User2",
+      "description" : "User2",
       "function_code" : 5,
-      "group" : null,
+      "group" : "Load Gamma/Color",
       "response_values" : null,
       "set_parameters" : "none"
    },
